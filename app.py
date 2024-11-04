@@ -29,10 +29,7 @@ initial_books = [
         "review": ("In 'Terminal List,' former Navy SEAL James Reece embarks on a personal journey of revenge "
                    "after discovering a conspiracy that leads to the deaths of his entire platoon. This gripping "
                    "thriller combines military action with psychological depth, as Reece struggles with his inner "
-                   "demons while seeking justice for his fallen comrades. Carr's firsthand experience in the Navy "
-                   "adds authenticity to the narrative, creating a pulse-pounding story filled with unexpected "
-                   "twists and high-stakes drama. It's a tale of betrayal, loyalty, and the complexities of warfare "
-                   "that will keep readers on the edge of their seats until the final page.")
+                   "demons while seeking justice for his fallen comrades.")
     },
     {
         "title": "1984",
@@ -40,27 +37,78 @@ initial_books = [
         "cover_image": "images/1984.jpg",
         "review": ("George Orwell’s '1984' remains a timeless exploration of totalitarianism and the chilling effects "
                    "of state surveillance on individual freedom. Set in a dystopian future, the story follows Winston "
-                   "Smith, a low-ranking member of the Party, as he grapples with his desire for truth and love in "
-                   "a world where privacy is obliterated, and the government manipulates reality. Orwell's haunting "
-                   "prose and vivid imagery craft a chilling atmosphere that resonates with modern readers, urging "
-                   "them to reflect on the importance of personal autonomy in the face of oppressive regimes. The "
-                   "novel serves as a stark warning against the erosion of truth and the loss of individuality, making "
-                   "it a crucial read in today’s society.")
+                   "Smith as he grapples with his desire for truth and love in a world where privacy is obliterated.")
     },
     {
         "title": "On the Road",
         "author": "Jack Kerouac",
         "cover_image": "images/on_the_road.jpg",
         "review": ("'On the Road' is a seminal work of American literature that captures the spirit of the Beat "
-                   "Generation through the lens of its iconic protagonist, Sal Paradise. Kerouac’s semi-autobiographical "
-                   "narrative chronicles the adventures of Sal and his friends as they traverse the United States in "
-                   "search of meaning, connection, and freedom. The novel is a vibrant tapestry of experiences, friendships, "
-                   "and the open road, infused with a sense of urgency and spontaneity that reflects the restlessness of "
-                   "youth. Kerouac's free-spirited prose and rich descriptions evoke the beauty of the American landscape, "
-                   "inviting readers to join in the quest for self-discovery and the celebration of life’s fleeting moments. "
-                   "It’s an exhilarating ride that remains relevant to anyone seeking to break free from societal constraints.")
+                   "Generation through the lens of its iconic protagonist, Sal Paradise. Kerouac’s narrative chronicles "
+                   "the adventures of Sal and his friends in search of meaning and freedom.")
+    },
+    {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "cover_image": "images/the_great_gatsby.jpg",
+        "review": ("In 'The Great Gatsby,' Fitzgerald explores themes of decadence and idealism in the context of 1920s America, "
+                   "narrated through the eyes of Nick Carraway as he observes the mysterious Jay Gatsby.")
+    },
+    {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "cover_image": "images/to_kill_a_mockingbird.jpg",
+        "review": ("Harper Lee's 'To Kill a Mockingbird' delves into themes of racial injustice and moral growth, "
+                   "as seen through the eyes of Scout Finch in the racially charged South of the 1930s.")
+    },
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "cover_image": "images/pride_and_prejudice.jpg",
+        "review": ("'Pride and Prejudice' is a romantic novel that critiques the British landed gentry at the end of the 18th century, "
+                   "focusing on Elizabeth Bennet's turbulent relationship with the enigmatic Mr. Darcy.")
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "author": "J.D. Salinger",
+        "cover_image": "images/the_catcher_in_the_rye.jpg",
+        "review": ("J.D. Salinger's 'The Catcher in the Rye' tells the story of Holden Caulfield, a teenager navigating the complexities of adolescence "
+                   "and his disdain for the adult world.")
+    },
+    {
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "cover_image": "images/brave_new_world.jpg",
+        "review": ("In 'Brave New World,' Huxley presents a dystopian future where society is engineered for maximum happiness, "
+                   "raising questions about freedom and individuality.")
+    },
+    {
+        "title": "The Alchemist",
+        "author": "Paulo Coelho",
+        "cover_image": "images/the_alchemist.jpg",
+        "review": ("Paulo Coelho's 'The Alchemist' is an allegorical novel about a shepherd named Santiago who dreams of finding a hidden treasure, "
+                   "embarking on a journey of self-discovery.")
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "cover_image": "images/the_hobbit.jpg",
+        "review": ("'The Hobbit' follows the adventures of Bilbo Baggins as he joins a group of dwarves on a quest to reclaim their homeland from the dragon Smaug.")
+    },
+    {
+        "title": "The Road",
+        "author": "Cormac McCarthy",
+        "cover_image": "images/the_road.jpg",
+        "review": ("In 'The Road,' McCarthy depicts a post-apocalyptic world through the journey of a father and his son, exploring themes of survival and hope.")
+    },
+    {
+        "title": "Fahrenheit 451",
+        "author": "Ray Bradbury",
+        "cover_image": "images/fahrenheit_451.jpg",
+        "review": ("Ray Bradbury's 'Fahrenheit 451' explores a future society where books are banned and 'firemen' burn any that are found, raising questions about censorship and knowledge.")
     }
 ]
+
 
 # Load initial data
 with app.app_context():

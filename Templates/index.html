@@ -1,19 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Book Reviews{% endblock %}
+{% block title %}Book Reviews{% endblock %}
 
 {% block content %}
     <h2>Available Books</h2>
     <div class="book-list">
         {% for book in books %}
-            <div class="book-item">
-                <a href="{{ url_for('book_details', book_id=book.id) }}">
-                    <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}" width="100">
-                    <h3>{{ book.title }}</h3>
-                    <p>by {{ book.author }}</p>
-                </a>
-            </div>
+        <div class="book-card">
+            <h3>{{ book.title }}</h3>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}" width="150">
+            <a href="{{ url_for('book_details', book_id=loop.index) }}" class="read-more-button">Read More</a>
+        </div>
         {% endfor %}
     </div>
-    <a href="{{ url_for('add_book') }}">Add a New Book</a>
 {% endblock %}
