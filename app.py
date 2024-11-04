@@ -1,57 +1,68 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import db, Book, Review
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config.from_object('config')
-db.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-def add_sample_data():
-    sample_books = [
-        Book(
-            title="Terminal List",
-            author="Jack Carr",
-            cover_image="https://m.media-amazon.com/images/I/71La9HeC1-L._AC_UF894,1000_QL80_.jpg",
-            amazon_link="https://www.amazon.com/s?tag=faketag&k=terminal+list+jack+carr"
-        ),
-        Book(
-            title="1984",
-            author="George Orwell",
-            cover_image="https://m.media-amazon.com/images/I/61ZewDE3beL._AC_UF894,1000_QL80_.jpg",
-            amazon_link="https://www.amazon.com/s?tag=faketag&k=1984+george+orwell"
-        ),
-        Book(
-            title="On the Road",
-            author="Jack Kerouac",
-            cover_image="https://m.media-amazon.com/images/I/71g1iYhvtKL._AC_UF894,1000_QL80_.jpg",
-            amazon_link="https://www.amazon.com/s?tag=faketag&k=on+the+road+jack+kerouac"
-        ),
-    ]
-    db.session.bulk_save_objects(sample_books)
-    db.session.commit()
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    author = db.Column(db.String(100), nullable=False)
+    cover_image = db.Column(db.String(300), nullable=False)
+    review = db.Column(db.Text, nullable=True)
+
+with app.app_context():
+    db.create_all()
+
+books = [
+    {
+        "id": 1,
+        "title": "Terminal List",
+        "author": "Jack Carr",
+        "cover_image": "images/terminal_list.jpg",
+        "review": "In 'Terminal List,' former Navy SEAL James Reece embarks on a personal journey of revenge after discovering a conspiracy that leads to the deaths of his entire platoon. This gripping thriller combines military action with psychological depth, as Reece struggles with his inner demons while seeking justice for his fallen comrades. Carr's firsthand experience in the Navy adds authenticity to the narrative, creating a pulse-pounding story filled with unexpected twists and high-stakes drama. It's a tale of betrayal, loyalty, and the complexities of warfare that will keep readers on the edge of their seats until the final page."
+    },
+    {
+        "id": 2,
+        "title": "1984",
+        "author": "George Orwell",
+        "cover_image": "images/1984.jpg",
+        "review": "George Orwell's '1984' remains a timeless exploration of totalitarianism and the chilling effects of state surveillance on individual freedom. Set in a dystopian future, the story follows Winston Smith, a low-ranking member of the Party, as he grapples with his desire for truth and love in a world where privacy is obliterated, and the government manipulates reality. Orwell's haunting prose and vivid imagery craft a chilling atmosphere that resonates with modern readers, urging them to reflect on the importance of personal autonomy in the face of oppressive regimes. The novel serves as a stark warning against the erosion of truth and the loss of individuality, making it a crucial read in today’s society."
+    },
+    {
+        "id": 3,
+        "title": "On the Road",
+        "author": "Jack Kerouac",
+        "cover_image": "images/on_the_road.jpg",
+        "review": "'On the Road' is a seminal work of American literature that captures the spirit of the Beat Generation through the lens of its iconic protagonist, Sal Paradise. Kerouac’s semi-autobiographical narrative chronicles the adventures of Sal and his friends as they traverse the United States in search of meaning, connection, and freedom. The novel is a vibrant tapestry of experiences, friendships, and the open road, infused with a sense of urgency and spontaneity that reflects the restlessness of youth. Kerouac's free-spirited prose and rich descriptions evoke the beauty of the American landscape, inviting readers to join in the quest for self-discovery and the celebration of life’s fleeting moments. It’s an exhilarating ride that remains relevant to anyone seeking to break free from societal constraints."
+    }
+]
 
 @app.route('/')
 def index():
-    books = Book.query.all()
     return render_template('index.html', books=books)
 
-@app.route('/book/<int:book_id>')
-def book_details(book_id):
-    book = Book.query.get_or_404(book_id)
-    reviews = Review.query.filter_by(book_id=book_id).all()
-    return render_template('book_details.html', book=book, reviews=reviews)
-
-@app.route('/add_book', methods=['GET', 'POST'])
+@app.route('/add', methods=['GET', 'POST'])
 def add_book():
     if request.method == 'POST':
         title = request.form['title']
         author = request.form['author']
         cover_image = request.form['cover_image']
-        amazon_link = request.form['amazon_link']
-        new_book = Book(title=title, author=author, cover_image=cover_image, amazon_link=amazon_link)
+        review = request.form['review']
+        new_book = Book(title=title, author=author, cover_image=cover_image, review=review)
         db.session.add(new_book)
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('add_book.html')
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route('/book/<int:book_id>')
+def book_details(book_id):
+    book = next((b for b in books if b['id'] == book_id), None)
+    if book is None:
+        return "Book not found", 404
+    return render_template('book_details.html', book=book)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)
