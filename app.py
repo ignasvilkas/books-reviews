@@ -6,7 +6,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Models
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
@@ -20,7 +19,6 @@ class Review(db.Model):
     content = db.Column(db.Text, nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
 
-# Initialize static data
 initial_books = [
     {
         "title": "Terminal List",
@@ -29,7 +27,10 @@ initial_books = [
         "review": ("In 'Terminal List,' former Navy SEAL James Reece embarks on a personal journey of revenge "
                    "after discovering a conspiracy that leads to the deaths of his entire platoon. This gripping "
                    "thriller combines military action with psychological depth, as Reece struggles with his inner "
-                   "demons while seeking justice for his fallen comrades.")
+                   "demons while seeking justice for his fallen comrades. Carr's firsthand experience in the Navy "
+                   "adds authenticity to the narrative, creating a pulse-pounding story filled with unexpected "
+                   "twists and high-stakes drama. It's a tale of betrayal, loyalty, and the complexities of warfare "
+                   "that will keep readers on the edge of their seats until the final page.")
     },
     {
         "title": "1984",
@@ -37,80 +38,141 @@ initial_books = [
         "cover_image": "images/1984.jpg",
         "review": ("George Orwell’s '1984' remains a timeless exploration of totalitarianism and the chilling effects "
                    "of state surveillance on individual freedom. Set in a dystopian future, the story follows Winston "
-                   "Smith as he grapples with his desire for truth and love in a world where privacy is obliterated.")
+                   "Smith, a low-ranking member of the Party, as he grapples with his desire for truth and love in "
+                   "a world where privacy is obliterated, and the government manipulates reality. Orwell's haunting "
+                   "prose and vivid imagery craft a chilling atmosphere that resonates with modern readers, urging "
+                   "them to reflect on the importance of personal autonomy in the face of oppressive regimes. The "
+                   "novel serves as a stark warning against the erosion of truth and the loss of individuality, making "
+                   "it a crucial read in today’s society.")
     },
     {
         "title": "On the Road",
         "author": "Jack Kerouac",
         "cover_image": "images/on_the_road.jpg",
         "review": ("'On the Road' is a seminal work of American literature that captures the spirit of the Beat "
-                   "Generation through the lens of its iconic protagonist, Sal Paradise. Kerouac’s narrative chronicles "
-                   "the adventures of Sal and his friends in search of meaning and freedom.")
+                   "Generation through the lens of its iconic protagonist, Sal Paradise. Kerouac’s semi-autobiographical "
+                   "narrative chronicles the adventures of Sal and his friends as they traverse the United States in "
+                   "search of meaning, connection, and freedom. The novel is a vibrant tapestry of experiences, friendships, "
+                   "and the open road, infused with a sense of urgency and spontaneity that reflects the restlessness of "
+                   "youth. Kerouac's free-spirited prose and rich descriptions evoke the beauty of the American landscape, "
+                   "inviting readers to join in the quest for self-discovery and the celebration of life’s fleeting moments. "
+                   "It’s an exhilarating ride that remains relevant to anyone seeking to break free from societal constraints.")
     },
     {
         "title": "The Great Gatsby",
         "author": "F. Scott Fitzgerald",
-        "cover_image": "images/the_great_gatsby.jpg",
-        "review": ("In 'The Great Gatsby,' Fitzgerald explores themes of decadence and idealism in the context of 1920s America, "
-                   "narrated through the eyes of Nick Carraway as he observes the mysterious Jay Gatsby.")
+        "cover_image": "images/great_gatsby.jpg",
+        "review": ("Set in the Roaring Twenties, 'The Great Gatsby' is a tale of love, wealth, and the American Dream. "
+                   "Through the eyes of Nick Carraway, we explore the lavish lifestyle of Jay Gatsby, a mysterious millionaire, "
+                   "and his obsession with the beautiful Daisy Buchanan. Fitzgerald's poignant prose and vivid imagery paint "
+                   "a picture of a society consumed by excess and the unattainable nature of dreams. This classic novel serves "
+                   "as a critical reflection on the disillusionment that often accompanies success and the fragility of human "
+                   "relationships.")
     },
     {
         "title": "To Kill a Mockingbird",
         "author": "Harper Lee",
         "cover_image": "images/to_kill_a_mockingbird.jpg",
-        "review": ("Harper Lee's 'To Kill a Mockingbird' delves into themes of racial injustice and moral growth, "
-                   "as seen through the eyes of Scout Finch in the racially charged South of the 1930s.")
+        "review": ("'To Kill a Mockingbird' is a powerful exploration of racial injustice in the Deep South, told through the "
+                   "innocent eyes of Scout Finch. As her father, Atticus Finch, defends a black man accused of raping a white "
+                   "woman, Scout learns about the complexities of human nature, morality, and empathy. Harper Lee's timeless "
+                   "narrative, rich with Southern charm and poignant social commentary, invites readers to confront their own "
+                   "prejudices and consider the importance of standing up for what is right.")
     },
     {
         "title": "Pride and Prejudice",
         "author": "Jane Austen",
         "cover_image": "images/pride_and_prejudice.jpg",
-        "review": ("'Pride and Prejudice' is a romantic novel that critiques the British landed gentry at the end of the 18th century, "
-                   "focusing on Elizabeth Bennet's turbulent relationship with the enigmatic Mr. Darcy.")
+        "review": ("In 'Pride and Prejudice,' Jane Austen presents a delightful tale of love and societal expectations in "
+                   "19th century England. The story follows the spirited Elizabeth Bennet as she navigates issues of class, "
+                   "marriage, and individuality, ultimately leading to a deeper understanding of herself and her feelings "
+                   "for the enigmatic Mr. Darcy. Austen's witty dialogue and keen observations of human behavior make this "
+                   "novel a timeless classic, inviting readers to reflect on the complexities of love and the importance "
+                   "of personal growth.")
     },
     {
         "title": "The Catcher in the Rye",
         "author": "J.D. Salinger",
-        "cover_image": "images/the_catcher_in_the_rye.jpg",
-        "review": ("J.D. Salinger's 'The Catcher in the Rye' tells the story of Holden Caulfield, a teenager navigating the complexities of adolescence "
-                   "and his disdain for the adult world.")
-    },
-    {
-        "title": "Brave New World",
-        "author": "Aldous Huxley",
-        "cover_image": "images/brave_new_world.jpg",
-        "review": ("In 'Brave New World,' Huxley presents a dystopian future where society is engineered for maximum happiness, "
-                   "raising questions about freedom and individuality.")
+        "cover_image": "images/catcher_in_the_rye.jpg",
+        "review": ("J.D. Salinger's 'The Catcher in the Rye' is a poignant exploration of teenage angst and alienation. "
+                   "The novel follows Holden Caulfield, a disenchanted adolescent, as he grapples with the complexities "
+                   "of adulthood and his deep-seated desire to protect the innocence of childhood. Salinger's distinctive "
+                   "narrative style and raw emotion resonate with readers, making this coming-of-age story a profound "
+                   "reflection on the challenges of growing up and finding one's place in the world.")
     },
     {
         "title": "The Alchemist",
         "author": "Paulo Coelho",
         "cover_image": "images/the_alchemist.jpg",
-        "review": ("Paulo Coelho's 'The Alchemist' is an allegorical novel about a shepherd named Santiago who dreams of finding a hidden treasure, "
-                   "embarking on a journey of self-discovery.")
+        "review": ("'The Alchemist' is a captivating tale of self-discovery and the pursuit of dreams. Following the journey "
+                   "of Santiago, a young shepherd, the story unfolds as he seeks a hidden treasure in the Egyptian pyramids. "
+                   "Coelho's lyrical prose and philosophical insights encourage readers to listen to their hearts and pursue "
+                   "their own personal legends. This inspiring novel resonates with anyone who has ever dared to chase their "
+                   "dreams.")
     },
     {
-        "title": "The Hobbit",
-        "author": "J.R.R. Tolkien",
-        "cover_image": "images/the_hobbit.jpg",
-        "review": ("'The Hobbit' follows the adventures of Bilbo Baggins as he joins a group of dwarves on a quest to reclaim their homeland from the dragon Smaug.")
+        "title": "The Picture of Dorian Gray",
+        "author": "Oscar Wilde",
+        "cover_image": "images/picture_of_dorian_gray.jpg",
+        "review": ("In 'The Picture of Dorian Gray,' Oscar Wilde crafts a mesmerizing tale of vanity, moral corruption, "
+                   "and the quest for eternal youth. Dorian Gray, a young man whose portrait ages while he remains youthful, "
+                   "finds himself drawn into a hedonistic lifestyle that ultimately leads to his downfall. Wilde's masterful "
+                   "use of language and exploration of the duality of human nature make this novel a timeless exploration of "
+                   "the consequences of excess and the search for identity.")
     },
     {
-        "title": "The Road",
-        "author": "Cormac McCarthy",
-        "cover_image": "images/the_road.jpg",
-        "review": ("In 'The Road,' McCarthy depicts a post-apocalyptic world through the journey of a father and his son, exploring themes of survival and hope.")
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "cover_image": "images/brave_new_world.jpg",
+        "review": ("Aldous Huxley’s 'Brave New World' presents a chilling vision of a dystopian future where individuality "
+                   "is sacrificed for societal stability. Set in a world governed by technology and conformity, the story "
+                   "follows Bernard Marx as he grapples with his dissatisfaction with the rigid norms of his society. Huxley's "
+                   "thought-provoking narrative raises important questions about the cost of progress and the value of human "
+                   "emotion in a controlled world.")
     },
     {
         "title": "Fahrenheit 451",
         "author": "Ray Bradbury",
         "cover_image": "images/fahrenheit_451.jpg",
-        "review": ("Ray Bradbury's 'Fahrenheit 451' explores a future society where books are banned and 'firemen' burn any that are found, raising questions about censorship and knowledge.")
+        "review": ("In 'Fahrenheit 451,' Ray Bradbury envisions a future where books are banned, and 'firemen' burn any that "
+                   "are found. The story follows Guy Montag, a fireman who begins to question the oppressive society in which "
+                   "he lives. Through Montag's journey, Bradbury explores themes of censorship, the importance of literature, "
+                   "and the power of individual thought. This classic novel serves as a powerful warning against the dangers "
+                   "of complacency in the face of authoritarianism.")
+    },
+    {
+        "title": "The Road",
+        "author": "Cormac McCarthy",
+        "cover_image": "images/the_road.jpg",
+        "review": ("'The Road' is a haunting tale of survival in a post-apocalyptic world. Following a father and his young son, "
+                   "the story explores themes of love, hope, and the enduring human spirit amidst desolation. McCarthy's spare, "
+                   "poetic prose immerses readers in the stark realities of their journey, making the bond between parent and child "
+                   "the focal point of a narrative filled with despair and fleeting moments of beauty.")
+    },
+    {
+        "title": "Life of Pi",
+        "author": "Yann Martel",
+        "cover_image": "images/life_of_pi.jpg",
+        "review": ("In 'Life of Pi,' Yann Martel tells the extraordinary story of Pi Patel, a young boy stranded on a lifeboat "
+                   "with a Bengal tiger after a shipwreck. The novel is a rich exploration of faith, survival, and the human spirit, "
+                   "blending adventure with philosophical reflection. Martel's narrative invites readers to ponder the nature of reality "
+                   "and the power of storytelling in shaping our understanding of the world.")
+    },
+      {
+        "title": "The Night Circus",
+        "author": "Erin Morgenstern",
+        "cover_image": "images/the_night_circus.jpg",
+        "review": ("In 'The Night Circus,' Erin Morgenstern weaves a mesmerizing tale of magic and competition set in a "
+                   "mysterious circus that appears only at night. The story follows two young illusionists, Celia and Marco, "
+                   "who are bound to a fierce rivalry that transcends the confines of the circus. With enchanting prose and "
+                   "vivid imagery, Morgenstern creates a world where dreams and reality intertwine, making this novel a "
+                   "captivating exploration of love, ambition, and the transformative power of imagination.")
     }
 ]
 
 
-# Load initial data
+
+
 with app.app_context():
     db.create_all()
     for book_data in initial_books:
@@ -119,7 +181,6 @@ with app.app_context():
             db.session.add(book)
     db.session.commit()
 
-# Routes
 @app.route('/')
 def index():
     books = Book.query.all()

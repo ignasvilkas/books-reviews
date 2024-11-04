@@ -1,103 +1,98 @@
 body {
-  font-family: Arial, sans-serif; /* Set a clean and professional font */
-  line-height: 1.6; /* Improve readability with line spacing */
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Remove default padding */
-  background-color: #f5f5f5; /* Light background for a clean look */
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #eaeaea;
+  margin: 0;
+  padding: 20px;
 }
 
 header {
-  background: #333; /* Dark background for the header */
-  color: #fff; /* White text for contrast */
-  padding: 10px 20px; /* Padding around the header */
+  background: #35424a;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
 }
 
-header h1 {
-  margin: 0; /* Remove default margin */
+h1 {
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
 }
 
 nav a {
-  color: #fff; /* White links */
-  text-decoration: none; /* Remove underline from links */
-  margin: 0 15px; /* Space between links */
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
 }
 
 nav a:hover {
-  text-decoration: underline; /* Underline on hover for emphasis */
-}
-
-main {
-  padding: 20px; /* Padding around the main content */
+  text-decoration: underline;
 }
 
 .book-list {
-  display: grid; /* Use grid layout */
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
-  gap: 20px; /* Space between items */
-  margin-top: 20px; /* Space above the books list */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .book-card {
-  background-color: #fff; /* White background for each book card */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 15px; /* Inner spacing */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.2s; /* Smooth transition for hover effect */
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  width: 250px;
+  transition: transform 0.3s;
 }
 
 .book-card:hover {
-  transform: scale(1.05); /* Slightly enlarge the card on hover */
+  transform: scale(1.05);
 }
 
-.review-card {
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 15px; /* Inner spacing */
-  margin: 10px 0; /* Space between reviews */
-  background-color: #f9f9f9; /* Light background color */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+.book-card img {
+  border-radius: 4px;
 }
 
 .read-more-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white;
-  text-align: center;
+  background: #35424a;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.3s;
+  display: inline-block;
+  margin-top: 10px;
+  transition: background 0.3s;
 }
 
 .read-more-button:hover {
-  background-color: #0056b3; /* Darker blue for hover effect */
-  transform: translateY(-2px); /* Slight lift effect */
+  background: #2c3e50;
 }
 
-textarea {
-  width: 100%; /* Full width for text area */
-  height: 100px; /* Set height for text area */
-  margin: 10px 0; /* Space around text area */
+form {
+  margin-top: 20px;
 }
 
-button {
-  background-color: #5cb85c; /* Green button */
-  color: white; /* White text */
-  border: none; /* No border */
-  padding: 10px 15px; /* Padding inside the button */
-  cursor: pointer; /* Pointer cursor on hover */
+form textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
-button:hover {
-  background-color: #4cae4c; /* Darker green on hover */
+form button {
+  background: #35424a;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-input[type="text"] {
-  width: 100%; /* Full width for input */
-  margin: 10px 0; /* Space around input */
-  padding: 10px; /* Padding inside input */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
+form button:hover {
+  background: #2c3e50;
 }
