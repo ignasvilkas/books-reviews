@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Book, Review
 
@@ -6,7 +5,6 @@ app = Flask(__name__)
 app.config.from_object('config')
 db.init_app(app)
 
-# Add sample data once
 def add_sample_data():
     sample_books = [
         Book(
