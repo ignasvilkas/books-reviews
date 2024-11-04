@@ -38,8 +38,8 @@ The Montserrat font is the main font used throughout the website, with Sans Seri
 The site features large, eye-catching images of book covers to draw users' attention and provide a visual representation of the content.
 
 ### Wireframes
-- [Home Page Wireframe - View](insert-link-here)
-- [Book Details Page Wireframe - View](insert-link-here)
+- [Home Page Wireframe - View](![alt text](image.png))
+- [Book Details Page Wireframe - View](https://share.balsamiq.com/c/n5Ea4NWvQV1aSoG9sL8Npp.jpg)
 
 ## Features
 - Responsive design for all device sizes.
@@ -52,11 +52,12 @@ The site features large, eye-catching images of book covers to draw users' atten
 - HTML5
 - CSS3
 - Python
+- Flask
+- PostgreSQL
 
 ### Frameworks, Libraries & Programs
 - **Bootstrap 4.4.1**: Used for responsiveness and styling.
 - **Google Fonts**: Used to import the 'Montserrat' font.
-- **Font Awesome**: Used for icons throughout the site.
 - **jQuery**: Used for interactive elements.
 - **Git**: Version control for project management.
 - **GitHub**: Repository for storing the project's code.
