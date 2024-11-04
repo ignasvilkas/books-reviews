@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/CSS/styles.css"
-  <title>Book Review Site</title>
-</head>
-<body>
-  <header>
-      <h1>Book Reviews</h1>
-      <nav>
-          <a href="{{ url_for('index') }}">Home</a>
-          <a href="{{ url_for('add_book') }}">Add Book</a>
-      </nav>
-  </header>
-  <main>
-      {% block content %}{% endblock %}
-  </main>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <h2>All Books</h2>
+    <ul>
+        {% for book in books %}
+        <li>
+            <a href="{{ url_for('book_details', book_id=book.id) }}">
+                <img src="{{ book.cover_image }}" alt="{{ book.title }}" width="100">
+                {{ book.title }} by {{ book.author }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

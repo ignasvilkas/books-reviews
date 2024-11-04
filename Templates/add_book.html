@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Add a New Book</h2>
+    <form method="post">
+        <label>Title: <input type="text" name="title" required></label><br>
+        <label>Author: <input type="text" name="author" required></label><br>
+        <label>Cover Image URL: <input type="text" name="cover_image"></label><br>
+        <label>Amazon Link: <input type="text" name="amazon_link"></label><br>
+        <button type="submit">Add Book</button>
+    </form>
+{% endblock %}
