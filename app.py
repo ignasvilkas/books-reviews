@@ -6,19 +6,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# Models
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     author = db.Column(db.String(100), nullable=False)
     cover_image = db.Column(db.String(300), nullable=False)
     review = db.Column(db.Text, nullable=True)
+    reviews = db.relationship('Review', backref='book', cascade="all, delete-orphan", lazy=True)
 
-with app.app_context():
-    db.create_all()
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
 
-books = [
+# Initialize static data
+initial_books = [
     {
-        "id": 1,
         "title": "Terminal List",
         "author": "Jack Carr",
         "cover_image": "images/terminal_list.jpg",
@@ -31,7 +35,6 @@ books = [
                    "that will keep readers on the edge of their seats until the final page.")
     },
     {
-        "id": 2,
         "title": "1984",
         "author": "George Orwell",
         "cover_image": "images/1984.jpg",
@@ -45,7 +48,6 @@ books = [
                    "it a crucial read in today’s society.")
     },
     {
-        "id": 3,
         "title": "On the Road",
         "author": "Jack Kerouac",
         "cover_image": "images/on_the_road.jpg",
@@ -60,9 +62,19 @@ books = [
     }
 ]
 
+# Load initial data
+with app.app_context():
+    db.create_all()
+    for book_data in initial_books:
+        if not Book.query.filter_by(title=book_data["title"]).first():
+            book = Book(**book_data)
+            db.session.add(book)
+    db.session.commit()
 
+# Routes
 @app.route('/')
 def index():
+    books = Book.query.all()
     return render_template('index.html', books=books)
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -78,11 +90,15 @@ def add_book():
         return redirect(url_for('index'))
     return render_template('add_book.html')
 
-@app.route('/book/<int:book_id>')
+@app.route('/book/<int:book_id>', methods=['GET', 'POST'])
 def book_details(book_id):
-    book = next((b for b in books if b['id'] == book_id), None)
-    if book is None:
-        return "Book not found", 404
+    book = Book.query.get_or_404(book_id)
+    if request.method == 'POST':
+        review_content = request.form['review']
+        new_review = Review(content=review_content, book_id=book.id)
+        db.session.add(new_review)
+        db.session.commit()
+        return redirect(url_for('book_details', book_id=book.id))
     return render_template('book_details.html', book=book)
 
 if __name__ == '__main__':

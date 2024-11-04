@@ -1,11 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}{{ book.title }} - Book Details{% endblock %}
+{% block title %}{{ book.title }} - Details{% endblock %}
 
 {% block content %}
     <h2>{{ book.title }}</h2>
-    <p>by {{ book.author }}</p>
-    <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}" width="300">
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <img src="{{ url_for('static', filename=book.cover_image) }}" alt="{{ book.title }}" width="150">
     <p>{{ book.review }}</p>
-    <a href="{{ url_for('index') }}">Back to Home</a>
+
+    <h3>Leave a Review</h3>
+    <form method="POST">
+        <textarea name="review" placeholder="Write your review here" required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <h3>Reviews</h3>
+    <ul>
+        {% for review in book.reviews %}
+            <li>{{ review.content }}</li>
+        {% else %}
+            <p>No reviews yet. Be the first to leave a review!</p>
+        {% endfor %}
+    </ul>
 {% endblock %}
