@@ -38,7 +38,7 @@ The Montserrat font is the main font used throughout the website, with Sans Seri
 The site features large, eye-catching images of book covers to draw users' attention and provide a visual representation of the content.
 
 ### Wireframes
-- [Home Page Wireframe - View](![alt text](image.png))
+- [Home Page Wireframe - View](https://share.balsamiq.com/c/wjJEZSh9t4a5CWKAEBU1dJ.jpg)
 - [Book Details Page Wireframe - View](https://share.balsamiq.com/c/n5Ea4NWvQV1aSoG9sL8Npp.jpg)
 
 ## Features
