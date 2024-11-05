@@ -1,2 +1,7 @@
-Flask
-Flask-SQLAlchemy
+click==8.1.7
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+greenlet==3.1.1
+itsdangerous==2.2.0
+SQLAlchemy==2.0.36
+Werkzeug==2.0.1
